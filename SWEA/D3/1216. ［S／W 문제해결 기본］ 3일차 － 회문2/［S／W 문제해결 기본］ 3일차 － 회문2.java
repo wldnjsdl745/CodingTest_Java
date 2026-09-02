@@ -9,7 +9,7 @@ class Solution
         for (int i=1; i<=10; i++) {
             int num = sc.nextInt();
             char[][] cArr = new char[100][100];
-            int max =0;
+            int max = 0;
 
             // 내용 입력
             for (int j = 0; j < 100; j++) {
@@ -21,33 +21,29 @@ class Solution
                 for (int k=0; k<100; k++){
                     // 가로
                     for (int l=99; l>=k; l--){
-                        boolean check = true;
-                        for (int m=0; m<=(l-k)/2; m++){
-                            if (cArr[j][k+m] != cArr[j][l-m]){
-                                check = false;
-                                break;
-                            }
+                        StringBuilder sb1 = new StringBuilder();
+                        for (int m=k; m<=l; m++){
+                            sb1.append(cArr[j][m]);
                         }
-                        if (check){
+                        if (sb1.toString().equals(sb1.reverse().toString())){
                             if (max < l-k+1){
                                 max = l-k+1;
                             }
+                            break;
                         }
                     }
 
                     // 세로
                     for (int l=99; l>=k; l--){
-                        boolean check = true;
-                        for (int m=0; m<=(l-k)/2; m++){
-                            if (cArr[k+m][j] != cArr[l-m][j]){
-                                check = false;
-                                break;
-                            }
+                        StringBuilder sb2 = new StringBuilder();
+                        for (int m=k; m<=l; m++){
+                            sb2.append(cArr[m][j]);
                         }
-                        if (check){
+                        if (sb2.toString().equals(sb2.reverse().toString())){
                             if (max < l-k+1){
                                 max = l-k+1;
                             }
+                            break;
                         }
                     }
                 }
